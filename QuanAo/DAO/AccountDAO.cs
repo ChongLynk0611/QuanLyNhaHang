@@ -17,15 +17,18 @@ namespace QuanAo
             private set { instance = value; }
         }
 
-        private AccountDAO() { }
+        
 
-        public bool Login(string userName, string passWord)
+        public string Login(string userName, string passWord)
         {
             string query = "USP_Login @userName , @passWord";
-
             DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { userName, passWord });
 
-            return result.Rows.Count > 0;
+            if (result.Rows.Count > 0) { 
+                return   result.Rows[0]["id_NhanVien"].ToString();
+            
+            }
+            return "";
         }
     }
 }

@@ -8,124 +8,88 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using QuanAo.Data;
 
 namespace QuanAo
 {
     public partial class ĐoiMK : System.Windows.Forms.UserControl
     {
-        string oldusername;
-
-        private static ĐoiMK _instance;
-        public static ĐoiMK Instance    // Giúp hiển thị trong form
+        private string id_NhanVien;
+        public ĐoiMK(string id_nhanvien)
         {
-            get
-            {
-                if (_instance == null)
-                    _instance = new ĐoiMK();
-                return _instance;
-            }
-        }
-        public ĐoiMK()
-        {
+            this.id_NhanVien = id_nhanvien;
             InitializeComponent();
         }
-
+        public string MD5(string mk)
+        {
+            String str = "";
+            Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(mk);
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            buffer = md5.ComputeHash(buffer);
+            foreach (Byte b in buffer)
+            {
+                str += b.ToString("X2");
+            }
+            return str;
+        }
         private void ĐoiMK_Load(object sender, EventArgs e)
         {
+            this.btn_CapNhat.Enabled = false;
+            this.tb_MKMoi.Enabled = false;
+            this.tb_NhapLai.Enabled = false;
             load();
         }
 
         //ham load thong tin
         private void load()
         {
-            DataProvider provider = new DataProvider();
-            DataTable table = provider.loadAccount();
-            dgvResult.DataSource = table;
-        }
-        private void clear()
-        {
-            txtID.ResetText();
-            txtUsername.ResetText();
-            txtDisplayname.ResetText();
-            txtPassword.ResetText();
+            string query = "select * from NhanVien where id_NhanVien ='" + this.id_NhanVien + "'";
+            DataRow NhanVien = dataProvider.GetDataTable(query).Rows[0];
+            this.lb_id.Text = NhanVien["id_NhanVien"].ToString();
+            this.lb_TenHienThi.Text = NhanVien["HoTen"].ToString();
+            string query1 = "select * from admin where id_NhanVien ='" + this.id_NhanVien + "'";
+            DataRow admin = dataProvider.GetDataTable(query1).Rows[0];
+            this.lb_TaiKhoan.Text = admin["TaiKhoan"].ToString();
         }
 
-        private void dgvResult_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btn_Sua_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
+            this.tb_MKMoi.Enabled = true;
+            this.tb_NhapLai.Enabled = true;
+            this.btn_Sua.Enabled = false;
+            this.btn_CapNhat.Enabled = true;
+        }
+
+        private void btn_CapNhat_Click(object sender, EventArgs e)
+        {
+            if (this.tb_MKMoi.Text == "")
             {
-                DataGridViewRow row = dgvResult.Rows[e.RowIndex];
-                txtID.Text=row.Cells[0].Value.ToString();
-                txtUsername.Text = row.Cells[1].Value.ToString();
-                oldusername = row.Cells[1].Value.ToString();
-                txtDisplayname.Text = row.Cells[2].Value.ToString();
-                txtPassword.Text = row.Cells[3].Value.ToString();
+                MessageBox.Show("Điền mật khẩu trước khi xác nhận");
             }
-        }
-
-        internal void ShowDialog()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e) // Thêm tài khoản
-        {
-            try
+            else if(this.tb_NhapLai.Text == "")
             {
-                string id = txtID.Text;
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
-                DataProvider provider = new DataProvider();
-                provider.AddAccount(id,username,password);
-                MessageBox.Show("Thêm thành công!\n Tài khoản " + username + " đã được thêm.", "Đã thêm", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                load();
-                clear();
+                MessageBox.Show("Điền mật khẩu trước khi xác nhận");
             }
-            catch
+            else
             {
-                MessageBox.Show("Không thêm được", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e) // Xóa tài khoản
-        {
-            try
-            {
-                if (MessageBox.Show("Bạn có chắc xóa tài khoản " + oldusername + " không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if(this.tb_MKMoi.Text != this.tb_NhapLai.Text)
                 {
-                    //Nhan yes
-                    string name = txtUsername.Text;
-                    DataProvider provider = new DataProvider();
-                    provider.DelAccount(name);
-                    MessageBox.Show("Xóa thành công!\n Tài khoản " + name + " đã được xóa.", "Đã xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    load();
-                    clear();
+                    MessageBox.Show("Mật khẩu nhập lại không chính xác");
                 }
-                //nhan no
-            }
-            catch
-            {
-                MessageBox.Show("Không xóa được", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    string query = "update admin set MatKhau = '" + this.MD5(this.tb_MKMoi.Text) + "' where id_NhanVien ='" + this.id_NhanVien + "'";
+                    dataProvider.exc(query);
+                    MessageBox.Show("Đổi mật khẩu thành công !!!");
+                    this.btn_CapNhat.Enabled = false;
+                    this.btn_Sua.Enabled = true;
+                    this.tb_MKMoi.Enabled = false;
+                    this.tb_NhapLai.Enabled = false;
+                }
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)  // Sửa tài khoản
-        {
-            try
-            {
-                string newid = txtID.Text;
-                string newusername = txtUsername.Text;
-                string newpassword = txtPassword.Text;
-                DataProvider provider = new DataProvider();
-                provider.UpdateAccount(newid ,newusername, newpassword,  oldusername);
-                MessageBox.Show("Chỉnh sửa thành công!\n Tài khoản " + oldusername + " đã chỉnh sửa.", "Đã sửa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                load();
-                clear();
-            }
-            catch
-            {
-                MessageBox.Show("Không sữa được!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+
+
     }
 }

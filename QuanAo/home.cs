@@ -14,13 +14,12 @@ namespace QuanAo
 {
     public partial class home : DevExpress.XtraBars.Ribbon.RibbonForm//giải thích chỗ này
     {
-        public string userName;
-        public string pass;
-        
-        public home(string user, string pass)
+        private string id_NhanVien;
+        private string ChucVu; 
+        public home(string idNhanVien, string chucvu)
         {
-            this.userName = user;
-            this.pass = pass;
+            this.id_NhanVien = idNhanVien;
+            this.ChucVu = chucvu;
             InitializeComponent();
           
             
@@ -35,10 +34,54 @@ namespace QuanAo
         // khi load form gọi tới skin() => để laod giao diện mặc định lên
         private void home_Load(object sender, EventArgs e)
         {
-            TrangChu TC = new TrangChu();
-            addpage(fr_main, "Trang chủ", TC);
+            if(this.ChucVu == "Thu ngân")
+            {
+                this.btn_PhanQuyen.Enabled = false;
+                this.btn_Kho.Enabled = false;
+                this.btn_BCDoanhThu.Enabled = false;
+                this.btn_NhanSu.Enabled = false;
+                this.btn_TKHoaDon.Enabled = false;
+                this.btn_TKKho.Enabled = false;
+                this.nav_HoaDon.Enabled = false;
+                this.nav_NhanVien.Enabled = false;
+                this.nav_NhapKho.Enabled = false;
+                this.btn_DauBep.Enabled = false;
+                this.nav_DauBep.Enabled = false;
+            }
+            else if(this.ChucVu == "Đầu bếp")
+            {
+                this.btn_PhanQuyen.Enabled = false;
+                this.btn_Kho.Enabled = false;
+                this.btn_BCDoanhThu.Enabled = false;
+                this.btn_NhanSu.Enabled = false;
+                this.btn_TKHoaDon.Enabled = false;
+                this.btn_TKKho.Enabled = false;
+                this.nav_HoaDon.Enabled = false;
+                this.nav_NhanVien.Enabled = false;
+                this.nav_NhapKho.Enabled = false;
+                this.btn_DatBan.Enabled = false;
+                this.btn_ThemMon.Enabled = false;
+                this.nav_DatBan.Enabled = false;
+                this.nav_ThemMon.Enabled = false;
+                this.nav_KhachHang.Enabled = false;
 
-
+            }
+            else if(this.ChucVu == "Quản kho")
+            {
+                this.btn_PhanQuyen.Enabled = false;
+                this.btn_BCDoanhThu.Enabled = false;
+                this.btn_NhanSu.Enabled = false;
+                this.btn_TKHoaDon.Enabled = false;       
+                this.nav_HoaDon.Enabled = false;
+                this.nav_NhanVien.Enabled = false;
+                this.btn_DatBan.Enabled = false;
+                this.btn_ThemMon.Enabled = false;
+                this.nav_DatBan.Enabled = false;
+                this.nav_ThemMon.Enabled = false;
+                this.nav_KhachHang.Enabled = false;
+                this.btn_DauBep.Enabled = false;
+                this.nav_DauBep.Enabled = false;
+            }
             skin();
         }
         /* phương thức thêm 1 page vào xtratabcontrol 
@@ -117,8 +160,8 @@ namespace QuanAo
 
         private void barButtonItem27_ItemClick(object sender, ItemClickEventArgs e)
         {
-            KHO K = new KHO();
-            addpage(fr_main, "Quản lý kho", K);
+            NhapKho K = new NhapKho(id_NhanVien);
+            addpage(fr_main, "Nhập kho", K);
         }
 
         private void ribbon_Click(object sender, EventArgs e)
@@ -134,23 +177,11 @@ namespace QuanAo
 
         private void barButtonItem30_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ĐoiMK DMK = new ĐoiMK();
+            ĐoiMK DMK = new ĐoiMK(this.id_NhanVien);
             addpage(fr_main, "Đổi mật khẩu", DMK);
         }
 
-        private void barButtonItem31_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            NhanVien_HeThong NVHT = new NhanVien_HeThong();
-            addpage(fr_main, "Nhân viên hệ thống", NVHT);
-        }
-
-        private void barButtonItem32_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            fLogin f = new fLogin();
-            Sleep SL = new Sleep(userName, userName, pass);
-            SL.ShowDialog();
-        }
-
+   
         private void navBarItem13_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             DanhSachBan DSB = new DanhSachBan();
@@ -190,6 +221,30 @@ namespace QuanAo
         {
             KhachHang KH = new KhachHang();
             addpage(fr_main, "Khách hàng", KH);
+        }
+
+        private void barButtonItem16_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            DauBep db = new DauBep();
+            addpage(fr_main, "Nhà bếp", db);
+        }
+
+        private void barButtonItem9_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            XuatKho XK = new XuatKho(id_NhanVien);
+            addpage(fr_main, "Xuất kho", XK);
+        }
+
+        private void barButtonItem16_ItemClick_2(object sender, ItemClickEventArgs e)
+        {
+            XemLichSu XLS = new XemLichSu(id_NhanVien);
+            addpage(fr_main, "Lịch sử", XLS);
+        }
+
+        private void barButtonItem15_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            TonKho TK = new TonKho(id_NhanVien);
+            addpage(fr_main, "Tồn kho", TK);
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.DS_Ban = new System.Windows.Forms.FlowLayoutPanel();
             this.ChiTietBan = new DevExpress.XtraEditors.GroupControl();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -48,6 +49,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pnThemMon = new System.Windows.Forms.Panel();
+            this.btn_ThemNhom = new DevExpress.XtraEditors.SimpleButton();
             this.SL_Mon = new System.Windows.Forms.NumericUpDown();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,6 +58,7 @@
             this.CBDanhMuc = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SoBan = new System.Windows.Forms.Label();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChiTietBan)).BeginInit();
@@ -70,6 +73,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.simpleButton4);
             this.groupControl1.Controls.Add(this.DS_Ban);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
@@ -77,6 +81,17 @@
             this.groupControl1.Size = new System.Drawing.Size(808, 682);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Danh sách bàn ăn";
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Appearance.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton4.Appearance.Options.UseFont = true;
+            this.simpleButton4.Location = new System.Drawing.Point(697, 3);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(94, 20);
+            this.simpleButton4.TabIndex = 7;
+            this.simpleButton4.Text = "Cập nhật";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // DS_Ban
             // 
@@ -94,7 +109,7 @@
             this.ChiTietBan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChiTietBan.Location = new System.Drawing.Point(808, 0);
             this.ChiTietBan.Name = "ChiTietBan";
-            this.ChiTietBan.Size = new System.Drawing.Size(520, 682);
+            this.ChiTietBan.Size = new System.Drawing.Size(692, 682);
             this.ChiTietBan.TabIndex = 1;
             this.ChiTietBan.Text = "Chi tiết bàn";
             // 
@@ -108,7 +123,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(2, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(516, 654);
+            this.panel1.Size = new System.Drawing.Size(688, 654);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -117,7 +132,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 105);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(516, 384);
+            this.panel3.Size = new System.Drawing.Size(688, 384);
             this.panel3.TabIndex = 6;
             // 
             // listBillInfo
@@ -126,20 +141,22 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listBillInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBillInfo.HideSelection = false;
             this.listBillInfo.Location = new System.Drawing.Point(0, 0);
             this.listBillInfo.Name = "listBillInfo";
-            this.listBillInfo.Size = new System.Drawing.Size(516, 384);
+            this.listBillInfo.Size = new System.Drawing.Size(688, 384);
             this.listBillInfo.TabIndex = 1;
             this.listBillInfo.UseCompatibleStateImageBehavior = false;
             this.listBillInfo.View = System.Windows.Forms.View.Details;
+            this.listBillInfo.SelectedIndexChanged += new System.EventHandler(this.listBillInfo_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Tên món";
-            this.columnHeader1.Width = 227;
+            this.columnHeader1.Width = 202;
             // 
             // columnHeader2
             // 
@@ -149,12 +166,12 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Đơn giá";
-            this.columnHeader3.Width = 103;
+            this.columnHeader3.Width = 96;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Thành tiền";
-            this.columnHeader4.Width = 106;
+            this.columnHeader4.Width = 133;
             // 
             // panel2
             // 
@@ -169,7 +186,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 489);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(516, 165);
+            this.panel2.Size = new System.Drawing.Size(688, 165);
             this.panel2.TabIndex = 5;
             // 
             // simpleButton3
@@ -242,6 +259,7 @@
             // 
             // pnThemMon
             // 
+            this.pnThemMon.Controls.Add(this.btn_ThemNhom);
             this.pnThemMon.Controls.Add(this.SL_Mon);
             this.pnThemMon.Controls.Add(this.simpleButton1);
             this.pnThemMon.Controls.Add(this.label2);
@@ -251,12 +269,21 @@
             this.pnThemMon.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnThemMon.Location = new System.Drawing.Point(0, 38);
             this.pnThemMon.Name = "pnThemMon";
-            this.pnThemMon.Size = new System.Drawing.Size(516, 67);
+            this.pnThemMon.Size = new System.Drawing.Size(688, 67);
             this.pnThemMon.TabIndex = 4;
+            // 
+            // btn_ThemNhom
+            // 
+            this.btn_ThemNhom.Location = new System.Drawing.Point(527, 20);
+            this.btn_ThemNhom.Name = "btn_ThemNhom";
+            this.btn_ThemNhom.Size = new System.Drawing.Size(94, 27);
+            this.btn_ThemNhom.TabIndex = 6;
+            this.btn_ThemNhom.Text = "Thêm nhóm";
+            this.btn_ThemNhom.Click += new System.EventHandler(this.simpleButton5_Click);
             // 
             // SL_Mon
             // 
-            this.SL_Mon.Location = new System.Drawing.Point(430, 20);
+            this.SL_Mon.Location = new System.Drawing.Point(444, 20);
             this.SL_Mon.Name = "SL_Mon";
             this.SL_Mon.Size = new System.Drawing.Size(67, 23);
             this.SL_Mon.TabIndex = 5;
@@ -316,8 +343,13 @@
             this.SoBan.Font = new System.Drawing.Font("Tahoma", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SoBan.Location = new System.Drawing.Point(0, 0);
             this.SoBan.Name = "SoBan";
-            this.SoBan.Size = new System.Drawing.Size(516, 38);
+            this.SoBan.Size = new System.Drawing.Size(688, 38);
             this.SoBan.TabIndex = 0;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "SL đang nấu";
+            this.columnHeader5.Width = 150;
             // 
             // DanhSachBan
             // 
@@ -326,7 +358,7 @@
             this.Controls.Add(this.ChiTietBan);
             this.Controls.Add(this.groupControl1);
             this.Name = "DanhSachBan";
-            this.Size = new System.Drawing.Size(1328, 682);
+            this.Size = new System.Drawing.Size(1500, 682);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ChiTietBan)).EndInit();
@@ -371,5 +403,8 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private System.Windows.Forms.ComboBox cbBan;
         private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private DevExpress.XtraEditors.SimpleButton btn_ThemNhom;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

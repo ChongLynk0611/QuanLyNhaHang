@@ -29,8 +29,25 @@ namespace QuanAo
         {
             InitializeComponent();
             clear_grid();
+            Enable();
+            this.add.Enabled = true;
         }
-
+        // enable cac button khi load form 
+        private void Enable()
+        {
+            this.btn_Luu.Enabled = false;
+            this.add.Enabled = false;
+            this.edit.Enabled = false;
+            this.save.Enabled = false;
+            this.del.Enabled = false;
+            this.hoten.Enabled = false;
+            this.gioitinh.Enabled = false;
+            this.ngaysinh.Enabled = false;
+            this.sdt.Enabled = false;
+            this.kynang.Enabled = false;
+            this.chucvu.Enabled = false;
+            this.luong.Enabled = false;
+        }
         /// <summary>
         /// Chỉ là làm cho cái GridControl thành rỗng
         /// </summary>
@@ -116,17 +133,20 @@ namespace QuanAo
         /// <param name="e"></param>
         private void add_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                idNhanVien.Text = Create_IDNV();
-                dataProvider.exc("exec add_nv " + "'" + idNhanVien.Text + "', N'" + hoten.Text + "', N'" + gioitinh.Text + "', '" + format_date(ngaysinh.Text) + "', N'" + chucvu.Text + "', '" + sdt.Text + "', " + float.Parse(luong.Text) + ", N'" + kynang.Text + "'");
-                MessageBox.Show("Thêm thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                load_data();
-            }
-            catch 
-            {
-                MessageBox.Show("Xảy ra lỗi khi thêm nhân viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            this.btn_Luu.Enabled = true;
+            this.add.Enabled = false;
+            this.edit.Enabled = false;
+            this.save.Enabled = false;
+            this.del.Enabled = false;
+            this.hoten.Enabled = true;
+            this.gioitinh.Enabled = true;
+            this.ngaysinh.Enabled = true;
+            this.sdt.Enabled = true;
+            this.kynang.Enabled = true;
+            this.chucvu.Enabled = true;
+            this.luong.Enabled = true;
+            idNhanVien.Text = Create_IDNV();
+           
         }
 
         /// <summary>
@@ -141,6 +161,26 @@ namespace QuanAo
                 dataProvider.exc("exec edit_nv " + "'" + idNhanVien.Text + "', N'" + hoten.Text + "', N'" + gioitinh.Text + "', '" + format_date(ngaysinh.Text) + "', N'" + chucvu.Text + "', '" + sdt.Text + "', " + float.Parse(luong.Text) + ", N'" + kynang.Text + "'");
                 MessageBox.Show("Sửa thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 load_data();
+                this.btn_Luu.Enabled = false;
+                this.add.Enabled = true;
+                this.edit.Enabled = false;
+                this.save.Enabled = false;
+                this.del.Enabled = false;
+                this.hoten.Enabled = true;
+                this.gioitinh.Enabled = true;
+                this.ngaysinh.Enabled = true;
+                this.sdt.Enabled = true;
+                this.kynang.Enabled = true;
+                this.chucvu.Enabled = true;
+                this.luong.Enabled = true;
+                this.hoten.Text = "";
+                this.gioitinh.Text = "";
+                this.ngaysinh.Text = "";
+                this.sdt.Text = "";
+                this.kynang.Text = "";
+                this.chucvu.Text = "";
+                this.luong.Text = "";
+                this.idNhanVien.Text = "";
             }
             catch 
             {
@@ -172,6 +212,8 @@ namespace QuanAo
         /// <param name="e"></param>
         private void edit_Click(object sender, EventArgs e)
         {
+            this.edit.Enabled = false;
+            this.save.Enabled = true;
             idNhanVien.Text = id_tab1;
             hoten.Text = name;
             gioitinh.Text = gt;
@@ -180,6 +222,16 @@ namespace QuanAo
             sdt.Text = phone;
             luong.Text = luog;
             kynang.Text = kn;
+           
+            this.add.Enabled = false;
+            this.del.Enabled = false;
+            this.hoten.Enabled = true;
+            this.gioitinh.Enabled = true;
+            this.ngaysinh.Enabled = true;
+            this.sdt.Enabled = true;
+            this.kynang.Enabled = true;
+            this.chucvu.Enabled = true;
+            this.luong.Enabled = true;
         }
 
         /// <summary>
@@ -206,11 +258,7 @@ namespace QuanAo
             }
         }
 
-        /// <summary>
-        /// Tìm nhân viên theo thông tin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+      
         private void search_Click(object sender, EventArgs e)
         {
             DataTable table = new DataTable();
@@ -256,11 +304,6 @@ namespace QuanAo
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void chonchucvu_SelectedValueChanged_1(object sender, EventArgs e)
         {
             if(chonchucvu.Text == "Ngày Sinh")
@@ -286,7 +329,7 @@ namespace QuanAo
             nv_ngaytinhcong.Text = gridView1.GetDataRow(e.RowHandle).ItemArray[10].ToString().Split(' ')[0];
             try
             {
-                nv_socong.Text = dataProvider.ExcScalar("exec return_nv_day " + "'" + id_tab2 + "', '" + format_date(dateEdit1.Text) + "'").ToString();
+                nv_socong.Text = dataProvider.ExcScalar("exec return_nv_day " + "'" + id_tab2 + "', '" + dateEdit1.DateTime.ToString("MM-dd-yyy") + "'").ToString();
                 int l = int.Parse((float.Parse(nv_luong.Text) * float.Parse(nv_socong.Text) / 30).ToString());
                 if (l >= 0)
                 {
@@ -304,7 +347,15 @@ namespace QuanAo
         {
             try
             {
-                nv_socong.Text = dataProvider.ExcScalar("exec return_nv_day " + "'" + id_tab2 + "', '" + format_date(dateEdit1.Text) + "'").ToString();
+                string socong = dataProvider.ExcScalar("exec return_nv_day " + "'" + id_tab2 + "', '" + dateEdit1.DateTime.ToString("MM-dd-yyy") + "'").ToString();
+                if (Convert.ToInt32(socong) > 0)
+                {
+                    nv_socong.Text = socong;
+                }
+                else
+                {
+                    MessageBox.Show("Phai chon ngay sau ngay bat dau tinh cong");
+                }
                 int l = int.Parse((float.Parse(nv_luong.Text) * float.Parse(nv_socong.Text) / 30).ToString());
                 if (l >= 0)
                 {
@@ -317,6 +368,7 @@ namespace QuanAo
             }
             catch { }
         }
+
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -332,14 +384,50 @@ namespace QuanAo
             }
         }
 
-        private void groupControl4_Paint(object sender, PaintEventArgs e)
-        {
+       
 
+        private void btn_Luu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                dataProvider.exc("exec add_nv " + "'" + idNhanVien.Text + "', N'" + hoten.Text + "', N'" + gioitinh.Text + "', '" + format_date(ngaysinh.Text) + "', N'" + chucvu.Text + "', '" + sdt.Text + "', " + float.Parse(luong.Text) + ", N'" + kynang.Text + "'");
+                MessageBox.Show("Thêm thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                load_data();
+                this.btn_Luu.Enabled = false;
+                this.add.Enabled = true;
+                this.edit.Enabled = false;
+                this.save.Enabled = false;
+                this.del.Enabled = false;
+                this.hoten.Enabled = true;
+                this.gioitinh.Enabled = true;
+                this.ngaysinh.Enabled = true;
+                this.sdt.Enabled = true;
+                this.kynang.Enabled = true;
+                this.chucvu.Enabled = true;
+                this.luong.Enabled = true;
+                this.hoten.Text = "";
+                this.gioitinh.Text = "";
+                this.ngaysinh.Text = "";
+                this.sdt.Text = "";
+                this.kynang.Text= "";
+                this.chucvu.Text= "";
+                this.luong.Text = "";
+                this.idNhanVien.Text = "";
+
+            }
+            catch
+            {
+                MessageBox.Show("Xảy ra lỗi khi thêm nhân viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void xtraTabPage1_Paint(object sender, PaintEventArgs e)
+        private void ds_nv_Click(object sender, EventArgs e)
         {
-
+            this.edit.Enabled = true;
+            this.add.Enabled = false;
+            this.btn_Luu.Enabled = false;
+            this.del.Enabled = true;
         }
     }
 }

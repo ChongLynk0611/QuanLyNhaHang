@@ -33,6 +33,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cbBan = new System.Windows.Forms.ComboBox();
             this.btn_ThemBan = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_XoaBan = new DevExpress.XtraEditors.SimpleButton();
             this.pn_ThongTin = new System.Windows.Forms.Panel();
             this.btn_TimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Tao = new DevExpress.XtraEditors.SimpleButton();
@@ -43,14 +44,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tx_SDT = new System.Windows.Forms.TextBox();
-            this.CBNhanVien = new System.Windows.Forms.ComboBox();
             this.btn_CapNhat = new DevExpress.XtraEditors.SimpleButton();
             this.btn_ThemMoi = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.HoaDonBan = new System.Windows.Forms.DataGridView();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.DS_HD = new System.Windows.Forms.DataGridView();
-            this.btn_XoaBan = new DevExpress.XtraEditors.SimpleButton();
+            this.CBNhanVien = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DS_Ban)).BeginInit();
             this.DS_Ban.SuspendLayout();
             this.pn_ChucNang.SuspendLayout();
@@ -113,6 +113,15 @@
             this.btn_ThemBan.TabIndex = 12;
             this.btn_ThemBan.Text = "Thêm bàn";
             this.btn_ThemBan.Click += new System.EventHandler(this.btn_ThemBan_Click);
+            // 
+            // btn_XoaBan
+            // 
+            this.btn_XoaBan.Location = new System.Drawing.Point(140, 43);
+            this.btn_XoaBan.Name = "btn_XoaBan";
+            this.btn_XoaBan.Size = new System.Drawing.Size(94, 29);
+            this.btn_XoaBan.TabIndex = 13;
+            this.btn_XoaBan.Text = "Xóa hóa đơn";
+            this.btn_XoaBan.Click += new System.EventHandler(this.btn_XoaBan_Click);
             // 
             // pn_ThongTin
             // 
@@ -202,14 +211,6 @@
             this.tx_SDT.Size = new System.Drawing.Size(223, 23);
             this.tx_SDT.TabIndex = 6;
             // 
-            // CBNhanVien
-            // 
-            this.CBNhanVien.FormattingEnabled = true;
-            this.CBNhanVien.Location = new System.Drawing.Point(177, 66);
-            this.CBNhanVien.Name = "CBNhanVien";
-            this.CBNhanVien.Size = new System.Drawing.Size(224, 24);
-            this.CBNhanVien.TabIndex = 5;
-            // 
             // btn_CapNhat
             // 
             this.btn_CapNhat.Location = new System.Drawing.Point(542, 34);
@@ -278,14 +279,13 @@
             this.DS_HD.TabIndex = 1;
             this.DS_HD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DS_HD_CellClick);
             // 
-            // btn_XoaBan
+            // CBNhanVien
             // 
-            this.btn_XoaBan.Location = new System.Drawing.Point(140, 43);
-            this.btn_XoaBan.Name = "btn_XoaBan";
-            this.btn_XoaBan.Size = new System.Drawing.Size(94, 29);
-            this.btn_XoaBan.TabIndex = 13;
-            this.btn_XoaBan.Text = "Xóa hóa đơn";
-            this.btn_XoaBan.Click += new System.EventHandler(this.btn_XoaBan_Click);
+            this.CBNhanVien.FormattingEnabled = true;
+            this.CBNhanVien.Location = new System.Drawing.Point(177, 66);
+            this.CBNhanVien.Name = "CBNhanVien";
+            this.CBNhanVien.Size = new System.Drawing.Size(224, 24);
+            this.CBNhanVien.TabIndex = 5;
             // 
             // DatBan
             // 
@@ -325,7 +325,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tx_SDT;
-        private System.Windows.Forms.ComboBox CBNhanVien;
         private System.Windows.Forms.Label lbid_HD;
         private System.Windows.Forms.DataGridView DS_HD;
         private DevExpress.XtraEditors.SimpleButton btn_CapNhat;
@@ -335,5 +334,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_Tao;
         private DevExpress.XtraEditors.SimpleButton btn_TimKiem;
         private DevExpress.XtraEditors.SimpleButton btn_XoaBan;
+        private System.Windows.Forms.ComboBox CBNhanVien;
     }
 }

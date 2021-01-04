@@ -84,6 +84,12 @@
     <Compile Include="DatBan.Designer.cs">
       <DependentUpon>DatBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="DauBep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DauBep.Designer.cs">
+      <DependentUpon>DauBep.cs</DependentUpon>
+    </Compile>
     <Compile Include="fLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,12 +114,6 @@
     <Compile Include="KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="KHO.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="KHO.designer.cs">
-      <DependentUpon>KHO.cs</DependentUpon>
-    </Compile>
     <Compile Include="NhaHangDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,25 +135,25 @@
     <Compile Include="NhanVien.designer.cs">
       <DependentUpon>NhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="NhanVien_HeThong.cs">
+    <Compile Include="NhapKho.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NhanVien_HeThong.Designer.cs">
-      <DependentUpon>NhanVien_HeThong.cs</DependentUpon>
+    <Compile Include="NhapKho.Designer.cs">
+      <DependentUpon>NhapKho.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sleep.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sleep.Designer.cs">
-      <DependentUpon>Sleep.cs</DependentUpon>
-    </Compile>
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ThanhToan.Designer.cs">
       <DependentUpon>ThanhToan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemNL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemNL.designer.cs">
+      <DependentUpon>ThemNL.cs</DependentUpon>
     </Compile>
     <Compile Include="Thongkedoanhthu.cs">
       <SubType>UserControl</SubType>
@@ -173,11 +173,35 @@
     <Compile Include="Thongkenhapkho.Designer.cs">
       <DependentUpon>Thongkenhapkho.cs</DependentUpon>
     </Compile>
+    <Compile Include="TonKho.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TonKho.designer.cs">
+      <DependentUpon>TonKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrangChu.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XemLichSu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XemLichSu.designer.cs">
+      <DependentUpon>XemLichSu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XoaNL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XoaNL.designer.cs">
+      <DependentUpon>XoaNL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XuatKho.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XuatKho.designer.cs">
+      <DependentUpon>XuatKho.cs</DependentUpon>
     </Compile>
     <Compile Include="ĐoiMK.cs">
       <SubType>UserControl</SubType>
@@ -191,6 +215,9 @@
     <EmbeddedResource Include="DatBan.resx">
       <DependentUpon>DatBan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DauBep.resx">
+      <DependentUpon>DauBep.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -203,14 +230,11 @@
     <EmbeddedResource Include="KhachHang.resx">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KHO.resx">
-      <DependentUpon>KHO.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="NhanVien.resx">
       <DependentUpon>NhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NhanVien_HeThong.resx">
-      <DependentUpon>NhanVien_HeThong.cs</DependentUpon>
+    <EmbeddedResource Include="NhapKho.resx">
+      <DependentUpon>NhapKho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -223,11 +247,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Sleep.resx">
-      <DependentUpon>Sleep.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ThanhToan.resx">
       <DependentUpon>ThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemNL.resx">
+      <DependentUpon>ThemNL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Thongkedoanhthu.resx">
       <DependentUpon>Thongkedoanhthu.cs</DependentUpon>
@@ -238,8 +262,20 @@
     <EmbeddedResource Include="Thongkenhapkho.resx">
       <DependentUpon>Thongkenhapkho.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TonKho.resx">
+      <DependentUpon>TonKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XemLichSu.resx">
+      <DependentUpon>XemLichSu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XoaNL.resx">
+      <DependentUpon>XoaNL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XuatKho.resx">
+      <DependentUpon>XuatKho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ĐoiMK.resx">
       <DependentUpon>ĐoiMK.cs</DependentUpon>

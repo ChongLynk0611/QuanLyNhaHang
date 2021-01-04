@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Data.SqlClient;
 
-namespace QuanAo
+namespace NhaHang
 {
     public partial class KHO : DevExpress.XtraEditors.XtraUserControl
     {
@@ -176,7 +176,7 @@ namespace QuanAo
             }
             else
             {
-                kn.Sua_NL(Convert.ToInt32(txtMaNL.Text) ,txtTenNL.Text, Convert.ToInt32(numSLNL.Value.ToString()));
+            //    kn.Sua_NL(Convert.ToInt32(txtMaNL.Text) ,txtTenNL.Text, Convert.ToInt32(numSLNL.Value.ToString()));
                 XtraMessageBox.Show("Sửa thông tin thành công");
                 LoadNguyenLieu();
                 lam_tuoi();
@@ -209,7 +209,7 @@ namespace QuanAo
                 }    
                 else
                 {
-                    kn.Them_NL(txtTenNL.Text, Convert.ToInt32(numSLNL.Value.ToString()));
+                 //   kn.Them_NL(txtTenNL.Text, Convert.ToInt32(numSLNL.Value.ToString()));
                     LoadNguyenLieu();
                     lam_tuoi();
                 }    
@@ -235,7 +235,7 @@ namespace QuanAo
             else
             {
                 sbtnThemMoi.Enabled = false;
-                kn.Them_CTNK(kn.GetMaPNK(), Convert.ToInt32(cbMaNL.Text), Convert.ToInt32(numSL_PNK.Value.ToString()), Convert.ToInt32(txtGia_PNK.Text));
+            //    kn.Them_CTNK(kn.GetMaPNK(), Convert.ToInt32(cbMaNL.Text), Convert.ToInt32(numSL_PNK.Value.ToString()), Convert.ToInt32(txtGia_PNK.Text));
                 dataPNK.DataSource = kn.Xem_PNK(Convert.ToInt32(kn.GetMaPNK()));
                 cbMaNL.Text = "";
                 numSL_PNK.Value = 0;
@@ -366,11 +366,6 @@ namespace QuanAo
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             lam_tuoi();
-        }
-
-        private void labelControl14_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

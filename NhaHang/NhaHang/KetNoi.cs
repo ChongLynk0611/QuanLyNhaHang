@@ -9,11 +9,11 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanAo
+namespace NhaHang
 {
     class KetNoi
     {
-        public static string connectionstr = "Data Source=DESKTOP-UR6D0PD\\SQLEXPRESS;Initial Catalog=NhaHang;Integrated Security=True";
+        public static string connectionstr = @"Data Source=DESKTOP-F9OV7A9\SQLEXPRESS;Initial Catalog=NhaHang;Integrated Security=True";
         SqlConnection connection;
         DataTable data;
         SqlDataAdapter adapter;
@@ -36,11 +36,11 @@ namespace QuanAo
 
             return connection;
         }
-        public DataTable truyvanSQL(string query)
+        public DataTable truyvanSQL (string query)
         {
             open();
             data = new DataTable();
-            command = new SqlCommand(query, connection);
+            command = new SqlCommand(query,connection);
             adapter = new SqlDataAdapter(command);
             adapter.Fill(data);
             close();
@@ -50,14 +50,14 @@ namespace QuanAo
         {
             open();
             data = new DataTable();
-            command = new SqlCommand(query, connection);
+            command = new SqlCommand(query,connection);
             command.CommandType = CommandType.StoredProcedure;
             adapter = new SqlDataAdapter(command);
             adapter.Fill(data);
             close();
             return data;
         }
-        public SqlCommand Them_NL(string TenNL, int SL, string DonVi)
+        public SqlCommand Them_NL(string TenNL, int SL,string DonVi)
         {
             open();
             command = new SqlCommand("add_NL", connection);
@@ -69,7 +69,7 @@ namespace QuanAo
             close();
             return command;
         }
-        public SqlCommand Sua_NL(int MaNL, string TenNL, string DonVi)
+        public SqlCommand Sua_NL(int MaNL,string TenNL,string DonVi)
         {
             open();
             command = new SqlCommand("update_NL", connection);
@@ -91,7 +91,7 @@ namespace QuanAo
             close();
             return command;
         }
-        public SqlCommand Them_CTNK(int MaPNK, int MaNL, int SL, int Gia, string DonVi)
+        public SqlCommand Them_CTNK(int MaPNK, int MaNL, int SL, int Gia,string DonVi)
         {
             open();
             command = new SqlCommand("add_CTNK", connection);
@@ -105,7 +105,7 @@ namespace QuanAo
             close();
             return command;
         }
-        public SqlCommand Them_PNK(string MaNV, DateTime NgayNhap)
+        public SqlCommand Them_PNK(string MaNV,DateTime NgayNhap)
         {
             open();
             command = new SqlCommand("add_PNK", connection);
@@ -128,7 +128,7 @@ namespace QuanAo
             close();
             return data;
         }
-        public void loadCombobox(System.Windows.Forms.ComboBox tencombobox, string table, string ten)
+        public void loadCombobox(System.Windows.Forms.ComboBox tencombobox,string table,string ten)
         {
             DataTable data = new DataTable();
             string query = "select * from " + table;
@@ -142,10 +142,10 @@ namespace QuanAo
             DataTable data = new DataTable();
             string query = "select max(id_PhieuNhapKho) from PhieuNhapKho";
             data = truyvanSQL(query);
-            if (data.Rows[0][0].ToString() != "")
+            if(data.Rows[0][0].ToString() != "")
             {
                 maPNK = Convert.ToInt32(data.Rows[0][0].ToString());
-            }
+            }               
             return maPNK;
         }
         public int GetMaPXK()

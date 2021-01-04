@@ -41,8 +41,19 @@ namespace QuanAo
                 // màu cho bàn có ng
                 else
                 {
-                    
-                    btn.BackColor = Color.OliveDrab;
+                    string query = "select * from HoaDonBan, HoaDon where TenBan = " + item["TenBan"].ToString() + " and HoaDon.id_HoaDon = HoaDonBan.id_HoaDon and HoaDon.TinhTrang = 0";
+                  
+                    DataRow hdBan = dataProvider.GetDataTable(query).Rows[0];
+                    int Tong = (int)hdBan["TongGia"];
+                    if ((int)hdBan["TongGia"] == 0)
+                    {
+                        btn.BackColor = Color.HotPink;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.OliveDrab;
+                    }
+                   
                 }
                 
                 DS_Ban.Controls.Add(btn);
@@ -82,6 +93,7 @@ namespace QuanAo
                 listBillInfo.Items[i].SubItems.Add(item["SoLuong"].ToString());
                 listBillInfo.Items[i].SubItems.Add(item["Gia"].ToString());
                 listBillInfo.Items[i].SubItems.Add(item["TongGia"].ToString());
+                listBillInfo.Items[i].SubItems.Add(item["ChuaNau"].ToString());
                 tongGia += Convert.ToInt64(item["TongGia"]);
                 i++;
             }
@@ -102,6 +114,18 @@ namespace QuanAo
             TenBan =Convert.ToInt32((sender as Button).Tag);
             ChiTietBan.Enabled = true;
 
+            // kiểm tra xem bàn đó còn trống hay không
+            string query = " select * from Ban where TenBan =" + TenBan.ToString();
+            DataRow r = dataProvider.GetDataTable(query).Rows[0];
+            
+            if(r[2].ToString() == "Trống")
+            {
+                this.btn_ThemNhom.Enabled = false;
+            }
+            else
+            {
+                this.btn_ThemNhom.Enabled = true;
+            }
             
             
 
@@ -210,6 +234,48 @@ namespace QuanAo
             TT.ShowPreviewDialog();
             loadBan();
             listBillInfo.Items.Clear();
+        }
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            loadForm();
+            loadBan();
+        }
+
+        // thêm món cho tất cả bàn thuộc hóa đơn đó
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            // kiểm tra số lượng được thêm vào có hợp lý hay không
+            if (SL_Mon.Value <= 0)
+            {
+                MessageBox.Show("chọn số lượng đồ ăn !!!");
+            }
+            // nếu đúng số lượng rồi thì check bill
+            else
+            {
+                int id_ban = Convert.ToInt32(listBillInfo.Tag);
+                int id_HDBan = checkBillTable(id_ban);
+                string query = "select * from HoaDonBan where id_HDBan =" + id_HDBan.ToString();
+                DataRow r = dataProvider.GetDataTable(query).Rows[0];
+                string id_HD = r["id_HoaDon"].ToString();
+                // Toàn bộ bàn cùng hóa đơn
+                string query1 = "select * from HoaDonBan where id_HoaDon = '" + id_HD + "'";
+                DataTable dsBan = dataProvider.GetDataTable(query1);
+                foreach(DataRow ban in dsBan.Rows)
+                {
+                    // thêm luôn vào bàn có hóa đơn đã có từ trước
+                    dataProvider.exc("exec InsertChiTietHoaDon " + ban["id_HDBan"].ToString() + "," + CBMon.SelectedValue + "," + SL_Mon.Value.ToString());
+                }
+                
+                loadBan();
+                loadBill(id_ban);
+                
+            }
+        }
+
+        private void listBillInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

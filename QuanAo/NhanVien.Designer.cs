@@ -35,14 +35,14 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.inputsearch_ns = new DevExpress.XtraEditors.DateEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.btn_Luu = new DevExpress.XtraEditors.SimpleButton();
             this.add = new DevExpress.XtraEditors.SimpleButton();
             this.edit = new DevExpress.XtraEditors.SimpleButton();
             this.del = new DevExpress.XtraEditors.SimpleButton();
-            this.hide = new DevExpress.XtraEditors.SimpleButton();
-            this.search = new DevExpress.XtraEditors.SimpleButton();
             this.save = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.chucvu = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.search = new DevExpress.XtraEditors.SimpleButton();
             this.chonchucvu = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.inputSearch = new DevExpress.XtraEditors.TextEdit();
@@ -152,7 +152,6 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1394, 770);
             this.xtraTabPage1.Text = "Nhân Viên";
-            this.xtraTabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.xtraTabPage1_Paint);
             // 
             // labelControl11
             // 
@@ -185,6 +184,7 @@
             this.groupControl2.Controls.Add(this.inputsearch_ns);
             this.groupControl2.Controls.Add(this.groupControl4);
             this.groupControl2.Controls.Add(this.chucvu);
+            this.groupControl2.Controls.Add(this.search);
             this.groupControl2.Controls.Add(this.chonchucvu);
             this.groupControl2.Controls.Add(this.labelControl10);
             this.groupControl2.Controls.Add(this.inputSearch);
@@ -224,19 +224,28 @@
             // groupControl4
             // 
             this.groupControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.groupControl4.Controls.Add(this.btn_Luu);
             this.groupControl4.Controls.Add(this.add);
             this.groupControl4.Controls.Add(this.edit);
             this.groupControl4.Controls.Add(this.del);
-            this.groupControl4.Controls.Add(this.hide);
-            this.groupControl4.Controls.Add(this.search);
             this.groupControl4.Controls.Add(this.save);
             this.groupControl4.Controls.Add(this.simpleButton1);
             this.groupControl4.Location = new System.Drawing.Point(835, 0);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(328, 278);
+            this.groupControl4.Size = new System.Drawing.Size(328, 222);
             this.groupControl4.TabIndex = 17;
             this.groupControl4.Text = "groupControl4";
-            this.groupControl4.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl4_Paint);
+            // 
+            // btn_Luu
+            // 
+            this.btn_Luu.Appearance.ForeColor = System.Drawing.Color.Teal;
+            this.btn_Luu.Appearance.Options.UseForeColor = true;
+            this.btn_Luu.Location = new System.Drawing.Point(199, 37);
+            this.btn_Luu.Name = "btn_Luu";
+            this.btn_Luu.Size = new System.Drawing.Size(94, 29);
+            this.btn_Luu.TabIndex = 14;
+            this.btn_Luu.Text = "Lưu";
+            this.btn_Luu.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
             // add
             // 
@@ -271,44 +280,22 @@
             this.del.Text = "Xoá";
             this.del.Click += new System.EventHandler(this.del_Click);
             // 
-            // hide
-            // 
-            this.hide.Appearance.ForeColor = System.Drawing.Color.Teal;
-            this.hide.Appearance.Options.UseForeColor = true;
-            this.hide.Location = new System.Drawing.Point(199, 164);
-            this.hide.Name = "hide";
-            this.hide.Size = new System.Drawing.Size(94, 29);
-            this.hide.TabIndex = 10;
-            this.hide.Text = "Ẩn";
-            this.hide.Click += new System.EventHandler(this.hide_Click_1);
-            // 
-            // search
-            // 
-            this.search.Appearance.ForeColor = System.Drawing.Color.Teal;
-            this.search.Appearance.Options.UseForeColor = true;
-            this.search.Location = new System.Drawing.Point(115, 223);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(94, 29);
-            this.search.TabIndex = 9;
-            this.search.Text = "Tìm";
-            this.search.Click += new System.EventHandler(this.search_Click);
-            // 
             // save
             // 
             this.save.Appearance.ForeColor = System.Drawing.Color.Teal;
             this.save.Appearance.Options.UseForeColor = true;
-            this.save.Location = new System.Drawing.Point(199, 43);
+            this.save.Location = new System.Drawing.Point(199, 106);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(94, 29);
             this.save.TabIndex = 7;
-            this.save.Text = "Lưu";
+            this.save.Text = "Cập nhật";
             this.save.Click += new System.EventHandler(this.save_Click_1);
             // 
             // simpleButton1
             // 
             this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Teal;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(199, 99);
+            this.simpleButton1.Location = new System.Drawing.Point(199, 163);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(94, 29);
             this.simpleButton1.TabIndex = 13;
@@ -329,6 +316,17 @@
             "Đầu Bếp"});
             this.chucvu.Size = new System.Drawing.Size(191, 22);
             this.chucvu.TabIndex = 18;
+            // 
+            // search
+            // 
+            this.search.Appearance.ForeColor = System.Drawing.Color.Teal;
+            this.search.Appearance.Options.UseForeColor = true;
+            this.search.Location = new System.Drawing.Point(835, 271);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(270, 29);
+            this.search.TabIndex = 9;
+            this.search.Text = "Tìm";
+            this.search.Click += new System.EventHandler(this.search_Click);
             // 
             // chonchucvu
             // 
@@ -527,6 +525,7 @@
             this.ds_nv.TabIndex = 0;
             this.ds_nv.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
+            this.ds_nv.Click += new System.EventHandler(this.ds_nv_Click);
             // 
             // gridView2
             // 
@@ -675,7 +674,7 @@
             this.xtraTabPage2.Controls.Add(this.labelControl12);
             this.xtraTabPage2.Controls.Add(this.gridControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1394, 923);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1394, 770);
             this.xtraTabPage2.Tag = "1";
             this.xtraTabPage2.Text = "Tính công";
             // 
@@ -728,7 +727,7 @@
             // 
             // dateEdit1
             // 
-            this.dateEdit1.EditValue = new System.DateTime(2020, 6, 26, 7, 50, 50, 0);
+            this.dateEdit1.EditValue = new System.DateTime(2021, 1, 5, 0, 0, 0, 0);
             this.dateEdit1.Location = new System.Drawing.Point(1218, 284);
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1030,7 +1029,6 @@
         private DevExpress.XtraEditors.SimpleButton add;
         private DevExpress.XtraEditors.SimpleButton edit;
         private DevExpress.XtraEditors.SimpleButton del;
-        private DevExpress.XtraEditors.SimpleButton hide;
         private DevExpress.XtraEditors.SimpleButton search;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.ComboBoxEdit chucvu;
@@ -1092,5 +1090,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraEditors.LabelControl labelControl21;
         private DevExpress.XtraEditors.SimpleButton save;
+        private DevExpress.XtraEditors.SimpleButton btn_Luu;
     }
 }
